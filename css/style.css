@@ -199,7 +199,7 @@ main {
     margin-top: 35px;
     width: 73px;
     text-align: center;
-}
+    }
 
 .menu-list:last-child {
     width: 80px;
@@ -1093,6 +1093,25 @@ footer {
 
 .clrabout {
     height: 100px;
+}
+/* .userbar {
+    width: 590px;
+} */
+
+.userbar-link {
+    width: 150px;
+    text-decoration: none;
+    color: white;
+    font-family: "Roboto Condensed";
+    font-size: 18px;
+    font-weight: 400;
+    float: left;
+    margin: 36px 0 0 100px;
+  }
+
+.userbar-link:hover {
+    letter-spacing: 0.1px;
+    color: rgb(241, 107, 18);
 }
 @media screen and (max-width: 1024px) {
     .searchbar {
