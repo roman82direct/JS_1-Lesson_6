@@ -3,21 +3,26 @@ var body = document.getElementsByTagName('body')[0];
 
 window.onload = createCard();
 window.onload = createModalCard();
+window.onload = createModalOrder();
 
 var cards = document.getElementsByClassName('galitem');
 for (var i = 0; i < cards.length; i++){
     cards[i].addEventListener('click', showModalGood);
 };
 
+var buy = document.getElementsByClassName('buygame');
+for (var i = 0; i < buy.length; i++){
+    // cards[i].removeEventListener('click', showModalGood);
+    buy[i].onclick = showModalOrder;
+};
+
 var small = document.getElementsByClassName('small_Img');
 for (var i = 0; i < small.length; i++){
     small[i].onclick = showBig;
-    // small[i].onerror = function(){
-    //     console.log('ERROR');
-    // };
 };
 
-//Заполняем галерею карточками товаров
+//------------------------------------------------------
+//Заполнение галереи карточками товаров
 function createCard(){
     for (var i = 0; i < goods.length; i++){
         var card = document.createElement('div');
@@ -38,6 +43,7 @@ function createCard(){
         card.appendChild(price);
         var buy = document.createElement('a');
         buy.id = ('buy_' + i);
+        buy.className = 'buy';
         buy.innerText = 'КУПИТЬ';
         buy.href = '#';
         card.appendChild(buy);
@@ -73,10 +79,11 @@ function createModalCard(){
         gameCard.appendChild(leftPart);
         var content = document.createElement('div');
         content.id = 'cont_Big' + i;
+        content.style.height = '320px';
         var bigImg = document.createElement('img');
         bigImg.className = 'mainimg';
         bigImg.src = goods[i].bigPhoto[0];
-        bigImg.style.width = '500px';
+        bigImg.style.height = '280px';
         content.appendChild(bigImg);
         leftPart.appendChild(content);
         var gal = document.createElement('ul');
@@ -93,7 +100,6 @@ function createModalCard(){
             gal.appendChild(li);
         }
         leftPart.appendChild(gal);
-
         var rightPart = document.createElement('div');
         rightPart.className = 'rightpart';
         gameCard.appendChild(rightPart);
@@ -141,7 +147,6 @@ function showBig(event){
     var windowNum = smImg.id.split('_')[1];
     var cont = document.querySelector('#cont_Big' + windowNum);
     var path = this.src.split('/');
-    var big = document.getElementById('big');
     cont.innerHTML = '';
     newSrc = 'img/' + path[4] + '/big/' + path[6];
     newBig = document.createElement('img');
@@ -149,4 +154,75 @@ function showBig(event){
     newBig.style.width = '500px';
     newBig.src = newSrc;
     cont.appendChild(newBig);
+    newBig.onerror = () => {
+        cont.innerText = 'Ошибка загрузки фото';
+        cont.style.height = '320px';
+    }
 }
+
+//модальное окно для заказа на каждую карточку товара
+function createModalOrder(){
+    for (i = 0; i < goods.length; i++){
+        var modalOrder = document.createElement('div');
+        modalOrder.className = 'modalOrder';
+        modalOrder.id = 'modalOrder_' + i;
+        body.insertAdjacentElement('beforeend', modalOrder);
+        var modalOrderContent = document.createElement('div');
+        modalOrderContent.className = 'modalOrder_content';
+        modalOrderContent.id = 'modalOrderContent' + i;
+        modalOrder.appendChild(modalOrderContent);
+        var closeModalOrder = document.createElement('span');
+        closeModalOrder.className = 'close_modal_order';
+        closeModalOrder.id = 'closeModalOrder_' + i;
+        closeModalOrder.innerText = 'X';
+        modalOrderContent.appendChild(closeModalOrder);
+        var title = document.createElement('h3');
+        title.innerText = goods[i].title;
+        title.className = 'orderTitle';
+        modalOrderContent.appendChild(title);
+        var stock = document.createElement('p');
+        stock.innerText = 'Остаток на складе: ' + goods[i].quant + ' шт.';
+        modalOrderContent.appendChild(stock);  
+        var p = document.createElement('p');
+        p.innerText = 'Укажите количество к заказу:';
+        modalOrderContent.appendChild(p);
+        var input = document.createElement('input');
+        input.type = 'number';
+        input.id = 'quantOrder_' + i;
+        input.className = 'quantOrder';
+        modalOrderContent.appendChild(input);
+        var block = document.createElement('div');
+        block.className = 'yesNo';
+        var ok = document.createElement('p');
+        ok.className = 'ok';
+        ok.id = 'ok_' + i;
+        ok.innerText = 'OK'
+        var cancel = document.createElement('p');
+        cancel.className = 'cancel';
+        cancel.id = 'cancel_' + i;
+        cancel.innerText = 'ОТМЕНА'
+        block.appendChild(ok);
+        block.appendChild(cancel);
+        modalOrderContent.appendChild(block);
+    }  
+}
+//открытие модального окна для заказа товара
+function showModalOrder(event){
+    var button = event.target;
+    var num = button.id.split("_")[1];
+    var modalOrder = document.getElementById('modalOrder_' + num);
+    var closeOrder = document.getElementById('closeModalOrder_' + num);
+    var cancel = document.getElementById('cancel_' + num);
+    modalOrder.style.display = 'block';
+    closeOrder.onclick = function(){
+        modalOrder.style.display = 'none';
+    };
+    cancel.onclick = function(){
+        modalOrder.style.display = 'none';
+    }
+    window.onclick = function(event) {
+        if (event.target == modalOrder) {
+            modalOrder.style.display = "none";
+        }
+    }
+};

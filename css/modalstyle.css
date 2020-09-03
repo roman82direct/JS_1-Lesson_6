@@ -1,4 +1,4 @@
-  /* Modal */
+  /* Модальное окно карточки товара */
 
   .modalGood {
     display: none;
@@ -38,20 +38,69 @@
 margin-top: 10%;
 text-align: center;
 }
+
+  /* Модальное окно для заказа товара */
+  
+  .modalOrder {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+.modalOrder_content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: 13% auto 0;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 40%;
+    z-index: 99999;
+    align-items: center;
+    border-radius: 10px;
+}
+.close_modal_order {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: end;
+    margin-left: 90%;
+}
+.quantOrder {
+    height: 50px;
+    width: 100px;
+    font-size: 3em;
+    margin: 20px 0 50px 0;
+}
+.orderTitle {
+    color: red;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
 .yesNo {
 width: 60%;
 display: flex;
 justify-content: space-around;
 align-items: center;
-margin-top: 15%;
+margin-top: 0%;
 }
-#yes,
-#no {
+.ok,
+.cancel {
 cursor: pointer;
 font-size: 1.5rem;
 font-weight: 400;
 }
-#yes:hover,
-#no:hover {
+.ok:hover,
+.cancel:hover {
 text-shadow: 1px 1px 1px black;
 }

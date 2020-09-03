@@ -584,17 +584,18 @@ footer {
 }
 .buygame:hover {
   box-shadow: 1px 1px 3px black;
+  cursor: pointer;
 }
 .buygame:active {
   box-shadow: none;
 }
 .gametext {
-  margin-top: 32px;
+  margin-top: 90px;
   min-width: 463px;
   min-height: 153px;
-  color: #999999;
+  color: #696969;
   font-family: "Roboto Condensed";
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 24px;
 }
