@@ -188,9 +188,14 @@ input[type="text"]:focus {
   letter-spacing: 0.36px;
 }
 .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 360px);
+  justify-content: center;
+  justify-items: center;
+  grid-gap: 30px;
   margin: 0 auto;
   max-width: 1920px;
-  padding: 0px 0px 0px;
+  padding: 50px 0px 0px;
 }
 .galh {
   color: #f44336;
@@ -201,20 +206,24 @@ input[type="text"]:focus {
   text-align: center;
   margin: 50px auto 0px;
 }
-.galbl {
-  max-width: 1200px;
-  margin: 105px auto 0px;
-}
 .galitem {
-  width: 270px;
-  height: 481px;
-  background-color: #f7f7f7;
+  width: 271px;
+  height: 500px;
+  background-color: #dddddd;
   float: left;
   margin: 0px 15px 0px;
+  position: relative;
 }
+.galitem:hover {
+  cursor: pointer;
+  background-color: #9c9494;
+  }
+.galitem:hover .over1{
+  display: block;
+}  
 .galitem p {
   color: #000000;
-  font-family: Poppins;
+  font-family: Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 23.94px;
@@ -227,14 +236,45 @@ input[type="text"]:focus {
   height: 30px;
   background-color: #f44336;
   color: #ffffff;
-  font-family: Poppins;
+  font-family: Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   padding: 8px 52px 7px;
-  margin-left: 70px;
+  margin-left: 63px;
   line-height: 88px;
 }
+.over1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 271px;
+  height: 376px;
+  background-color: #000;
+  opacity: 0.4;
+  display: none;
+}
+.right1,
+.left1 {
+    fill: #9c9494;
+    position: absolute;
+    transform: scale(2);
+    top: 190px;
+}
+
+.left1 {
+    transform: rotate(180deg) scale(2);
+    left: -20px;
+}
+.right1 {
+  right: -20px;
+}
+
+.left1:hover,
+.right1:hover {
+    fill: #555555;
+}
+
 .galitem .awar {
   line-height: 40px;
 }
@@ -486,76 +526,62 @@ footer {
 .gamecard {
   max-width: 1070px;
   min-height: 400px;
-  margin: 175px auto;
+  margin: 75px auto;
 }
 .leftpart {
-  width: 490px;
+  width: 500px;
   float: left;
   margin-right: 30px;
 }
 .rightpart {
   width: 500px;
   overflow: hidden;
+  margin: 0;
 }
 .shedule {
   list-style-type: none;
-  margin-top: 41px;
-  margin-left: 15px;
+  margin-top: 20px;
 }
 .kartinki {
   text-decoration: none;
+  margin-right: 10px;
   float: left;
 }
-.assasinimage {
-  width: 86px;
-  height: 62px;
-  margin-top: 21px;
-  margin-left: 20px;
-}
-.secondimage {
-  width: 120px;
-  height: 87px;
-  box-shadow: 1px 1px 10px black;
-}
-.assasinimage:hover {
+
+/* .assasinimage:hover {
   width: 120px;
   height: 87px;
   margin-top: 0px;
   margin-right: 0px;
   box-shadow: 1px 1px 10px black;
-}
+} */
 .ascreed {
   color: #000000;
-  font-family: Poppins;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-weight: 500;
   text-align: center;
-  margin-top: -8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
-.rogue {
-  font-family: Poppins;
-  font-size: 36px;
-  font-weight: 500;
-  color: #f44336;
-  text-align: center;
-  margin-top: -20px;
-}
+
 .cost {
   color: #000000;
-  font-family: Poppins;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 62px;
   font-weight: 400;
   text-align: center;
   margin-top: -10px;
+  margin-bottom: 30px;
 }
 .buygame {
   text-decoration: none;
-  padding: 14px 207px 14px 220px;
+  padding: 14px 200px 14px 200px;
   width: 470px;
   height: 62px;
   background-color: #f44336;
   color: #ffffff;
-  font-family: Poppins;
+  font-family: Helvetica, sans-serif;
   font-size: 30px;
   font-weight: 500;
   margin-top: -10px;
