@@ -1,4 +1,3 @@
-
 var gallery = document.querySelector('.gallery');
 var body = document.getElementsByTagName('body')[0];
 
@@ -9,10 +8,14 @@ var cards = document.getElementsByClassName('galitem');
 for (var i = 0; i < cards.length; i++){
     cards[i].addEventListener('click', showModalGood);
 };
-// var txt = document.getElementsByClassName('.galitem p');
-// for (var i = 0; i < txt.length; i++){
-//     txt[i].addEventListener('click', showModalGood);
-// };
+
+var small = document.getElementsByClassName('small_Img');
+for (var i = 0; i < small.length; i++){
+    small[i].onclick = showBig;
+    // small[i].onerror = function(){
+    //     console.log('ERROR');
+    // };
+};
 
 //Заполняем галерею карточками товаров
 function createCard(){
@@ -68,11 +71,14 @@ function createModalCard(){
         var leftPart = document.createElement('div');
         leftPart.className = 'leftpart';
         gameCard.appendChild(leftPart);
+        var content = document.createElement('div');
+        content.id = 'cont_Big' + i;
         var bigImg = document.createElement('img');
         bigImg.className = 'mainimg';
         bigImg.src = goods[i].bigPhoto[0];
         bigImg.style.width = '500px';
-        leftPart.appendChild(bigImg);
+        content.appendChild(bigImg);
+        leftPart.appendChild(content);
         var gal = document.createElement('ul');
         gal.className = 'shedule';
         for (var n = 0; n < goods[i].smallPhoto.length; n++){
@@ -80,7 +86,8 @@ function createModalCard(){
             li.className = 'kartinki';
             li.id = 'li_' + n;
             var smallImg = document.createElement('img');
-            smallImg.id = 'small_' + n;
+            smallImg.className = 'small_Img';
+            smallImg.id = 'small_' + i + '_' + n;
             smallImg.src = goods[i].smallPhoto[n];
             li.appendChild(smallImg);
             gal.appendChild(li);
@@ -127,3 +134,19 @@ function showModalGood(event){
         }
     }
 };
+
+//показ больших фото в галерее при клике на малое фото
+function showBig(event){
+    var smImg = event.target;
+    var windowNum = smImg.id.split('_')[1];
+    var cont = document.querySelector('#cont_Big' + windowNum);
+    var path = this.src.split('/');
+    var big = document.getElementById('big');
+    cont.innerHTML = '';
+    newSrc = 'img/' + path[4] + '/big/' + path[6];
+    newBig = document.createElement('img');
+    newBig.className = 'mainimg';
+    newBig.style.width = '500px';
+    newBig.src = newSrc;
+    cont.appendChild(newBig);
+}

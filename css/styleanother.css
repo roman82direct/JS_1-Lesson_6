@@ -210,7 +210,6 @@ input[type="text"]:focus {
   width: 271px;
   height: 500px;
   background-color: #dddddd;
-  float: left;
   margin: 0px 15px 0px;
   position: relative;
 }
@@ -240,8 +239,8 @@ input[type="text"]:focus {
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
-  padding: 8px 52px 7px;
-  margin-left: 63px;
+  padding: 8px 50px 7px;
+  margin-left: 60px;
   line-height: 88px;
 }
 .over1 {
@@ -547,14 +546,11 @@ footer {
   margin-right: 10px;
   float: left;
 }
+.small_Img:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  }
 
-/* .assasinimage:hover {
-  width: 120px;
-  height: 87px;
-  margin-top: 0px;
-  margin-right: 0px;
-  box-shadow: 1px 1px 10px black;
-} */
 .ascreed {
   color: #000000;
   font-family: Arial, Helvetica, sans-serif;
