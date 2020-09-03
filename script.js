@@ -121,10 +121,9 @@ function createModalCard(){
         modalDiscr.innerText = goods[i].longDiscr;
         rightPart.appendChild(modalDiscr);
     }
-
 }
 
-//открытие модального окна карточки товара
+//открытие_закрытие модального окна карточки товара
 function showModalGood(event){
     var card = event.target;
     var cardNum = card.id.split("_")[1];
@@ -190,6 +189,7 @@ function createModalOrder(){
         input.type = 'number';
         input.id = 'quantOrder_' + i;
         input.className = 'quantOrder';
+        input.value = 1;
         modalOrderContent.appendChild(input);
         var block = document.createElement('div');
         block.className = 'yesNo';
@@ -206,23 +206,46 @@ function createModalOrder(){
         modalOrderContent.appendChild(block);
     }  
 }
-//открытие модального окна для заказа товара
+//открытие_закрытие модального окна для заказа товара
 function showModalOrder(event){
     var button = event.target;
     var num = button.id.split("_")[1];
     var modalOrder = document.getElementById('modalOrder_' + num);
     var closeOrder = document.getElementById('closeModalOrder_' + num);
     var cancel = document.getElementById('cancel_' + num);
+    var ok = document.getElementById('ok_' + num);
+    var quant = document.getElementById('quantOrder_' + num);
+    var modalGood = document.getElementById('modalGood_' + num);
+    var basket = document.getElementById('basket');
     modalOrder.style.display = 'block';
     closeOrder.onclick = function(){
         modalOrder.style.display = 'none';
+        quant.value = '';
     };
+    ok.onclick = function(){
+        var orderGood = {        //объект - товар в корзине
+            title: goods[num].title,
+            price: goods[num].price,
+            quantOrder: parseInt(quant.value)
+        }
+        order.push(orderGood);   //кладем товар в корзину
+        console.log(order);
+
+        modalOrder.style.display = 'none';
+        modalGood.style.display = "none";
+        quant.value = '';
+        basket.innerHTML += ' *';
+        basket.style.color = 'red';
+    }
     cancel.onclick = function(){
         modalOrder.style.display = 'none';
+        quant.value = '';
     }
     window.onclick = function(event) {
-        if (event.target == modalOrder) {
+        if (event.target == modalOrder || event.target == modalGood) {
             modalOrder.style.display = "none";
+            modalGood.style.display = "none";
+            quant.value = '';
         }
     }
 };

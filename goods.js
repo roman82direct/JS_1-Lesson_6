@@ -37,4 +37,4 @@ var goods = [
     },
 ];
 
-var order = [];
+var order = [];// корзина
