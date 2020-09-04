@@ -7,9 +7,7 @@ var goods = [
     quant: 10,
     photoForGallery: ['img/assassins/forgallery/ACreed_0.jpg', 'img/assassins/forgallery/ACreed_3.jpg', 'img/assassins/forgallery/ACreed_4.jpg'],
     bigPhoto: ['img/assassins/big/ACreed_1.jpg', 'img/assassins/big/ACreed_2.jpg', 'img/assassins/big/ACreed_3.jpg', 'img/assassins/big/ACreed_4.jpg'],
-    smallPhoto: ['img/assassins/small/ACreed_1.jpg', 'img/assassins/small/ACreed_2.jpg', 'img/assassins/small/ACreed_3.jpg', 'img/assassins/small/ACreed_4.jpg'],
-    order: false,
-    buy: false
+    smallPhoto: ['img/assassins/small/ACreed_1.jpg', 'img/assassins/small/ACreed_2.jpg', 'img/assassins/small/ACreed_3.jpg', 'img/assassins/small/ACreed_4.jpg']
     },
     {
     title: 'world of tanks',
@@ -19,9 +17,7 @@ var goods = [
     quant: 20,
     photoForGallery: ['img/woftanks/forgallery/tanks_1.jpg', 'img/woftanks/forgallery/tanks_2.jpg', 'img/woftanks/forgallery/tanks_3.jpg', 'img/woftanks/forgallery/tanks_4.jpeg'],
     bigPhoto: ['img/woftanks/big/tanks_1.jpg', 'img/woftanks/big/tanks_2.jpg', 'img/woftanks/big/tanks_3.jpg', 'img/woftanks/big/tanks_4.jpeg'],
-    smallPhoto: ['img/woftanks/small/tanks_1.jpg', 'img/woftanks/small/tanks_2.jpg', 'img/woftanks/small/tanks_3.jpg', 'img/woftanks/small/tanks_4.jpeg'],
-    order: false,
-    buy: false
+    smallPhoto: ['img/woftanks/small/tanks_1.jpg', 'img/woftanks/small/tanks_2.jpg', 'img/woftanks/small/tanks_3.jpg', 'img/woftanks/small/tanks_4.jpeg']
     },
     {
     title: 'world of warships',
@@ -31,9 +27,7 @@ var goods = [
     quant: 15,
     photoForGallery: ['img/wofws/forgallery/Ships_0.png', 'img/wofws/forgallery/Ships_1.jpg', 'img/wofws/forgallery/Ships_2.jpg', 'img/wofws/forgallery/Ships_3.jpg', 'img/wofws/forgallery/Ships_4.jpg'],
     bigPhoto: ['img/wofws/big/Ships_1.jpg', 'img/wofws/big/Ships_2.jpg', 'img/wofws/big/Ships_3.jpg', 'img/wofws/big/Ships_3.jpg'],
-    smallPhoto: ['img/wofws/small/Ships_1.jpg', 'img/wofws/small/Ships_2.jpg', 'img/wofws/small/Ships_3.jpg', 'img/wofws/small/Ships_4.jpg'],
-    order: false,
-    buy: false
+    smallPhoto: ['img/wofws/small/Ships_1.jpg', 'img/wofws/small/Ships_2.jpg', 'img/wofws/small/Ships_3.jpg', 'img/wofws/small/Ships_4.jpg']
     },
 ];
 

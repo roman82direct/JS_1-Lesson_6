@@ -231,7 +231,7 @@ function showModalOrder(event){
             title: goods[num].title,
             price: goods[num].price,
             quantOrder: parseInt(quant.value),
-            gameId: this.id.split('_')[1]
+            gameId: num
         }
         order.push(orderGood);   //кладем товар в корзину
         // console.log(order);
@@ -300,20 +300,21 @@ function showBasket(){
             modalBasketContent.appendChild(basketItem);
         }
         header.innerText = 'В корзине ' + order.length + ' товаров на сумму ' + total + ' рублей';
-        var block = document.createElement('div');
-        block.className = 'yesNo';
-        var ok = document.createElement('p');
-        ok.className = 'ok';
-        ok.id = 'toOrder_' + i;
-        ok.innerText = 'Заказать'
-        var cancel = document.createElement('p');
-        cancel.className = 'cancel';
-        cancel.id = 'cancelBasket_' + i;
-        cancel.innerText = 'ОТМЕНА'
-        block.appendChild(ok);
-        block.appendChild(cancel);
-        modalBasketContent.appendChild(block);
     }
+    var block = document.createElement('div');
+    block.className = 'yesNo';
+    var ok = document.createElement('p');
+    ok.className = 'ok';
+    ok.id = 'toOrder_' + i;
+    ok.innerText = 'Заказать'
+    var cancel = document.createElement('p');
+    cancel.className = 'cancel';
+    cancel.id = 'cancelBasket_' + i;
+    cancel.innerText = 'ОТМЕНА'
+    block.appendChild(ok);
+    block.appendChild(cancel);
+    modalBasketContent.appendChild(block);
+
     modalBasket.style.display = 'block';
     closeModalBasket.onclick = function(){
         modalBasket.style.display = 'none';
