@@ -23,7 +23,16 @@ for (var i = 0; i < small.length; i++){
 var basket = document.getElementById('basket');
 basket.onclick = showBasket;
 
-//------------------------------------------------------
+var prev = document.getElementsByClassName('prev');
+for (var i = 0; i < prev.length; i++){
+    prev[i].onclick = showBigPrevArrow;
+};
+
+var next = document.getElementsByClassName('next');
+for (var i = 0; i < prev.length; i++){
+    next[i].onclick = showBigNextArrow;
+};
+
 //Заполнение галереи карточками товаров
 function createCard(){
     for (var i = 0; i < goods.length; i++){
@@ -85,15 +94,28 @@ function createModalCard(){
         var bigImg = document.createElement('img');
         bigImg.className = 'mainimg';
         bigImg.src = goods[i].bigPhoto[0];
+        bigImg.id = 'big_' + i + '_0';
         bigImg.style.height = '280px';
+        var arrows = document.createElement('div');
+        arrows.className = 'arrows';
+        var prev = document.createElement('p');
+        prev.id = 'prev_' + i;
+        prev.className = 'prev';
+        prev.innerText = '<--';
+        arrows.appendChild(prev);
+        var next = document.createElement('p');
+        next.id = 'next_' + i;
+        next.className = 'next';
+        next.innerText = '-->';
+        arrows.appendChild(next);        
         content.appendChild(bigImg);
         leftPart.appendChild(content);
+        leftPart.appendChild(arrows);
         var gal = document.createElement('ul');
         gal.className = 'shedule';
         for (var n = 0; n < goods[i].smallPhoto.length; n++){
             var li = document.createElement('li');
             li.className = 'kartinki';
-            li.id = 'li_' + n;
             var smallImg = document.createElement('img');
             smallImg.className = 'small_Img';
             smallImg.id = 'small_' + i + '_' + n;
@@ -151,6 +173,7 @@ function showBig(event){
     cont.innerHTML = '';
     newSrc = 'img/' + path[4] + '/big/' + path[6];
     newBig = document.createElement('img');
+    newBig.id = 'big_' + windowNum + '_' + smImg.id.split('_')[2];
     newBig.className = 'mainimg';
     newBig.style.width = '500px';
     newBig.src = newSrc;
@@ -331,3 +354,56 @@ function showBasket(){
         }
     }
 };
+
+//показ больших фото в галерее при клике на стрелку
+function showBigPrevArrow(){
+    var num = this.id.split('_')[1];
+    var cont = document.querySelector('#cont_Big' + num);
+    var big = document.getElementsByClassName('mainimg')[num];
+    var j = big.id.split('_')[2];
+    cont.innerHTML = '';
+    if (j !== '0'){
+        newSrc = goods[num].bigPhoto[j-1];
+        newBig = document.createElement('img');
+        newBig.className = 'mainimg';
+        newBig.id = 'big_' + num + '_' + (j-1);
+        newBig.style.width = '500px';
+        newBig.src = newSrc;
+        cont.appendChild(newBig);
+    } else {
+        j = goods[num].bigPhoto.length;
+        newSrc = goods[num].bigPhoto[j-1];
+        newBig = document.createElement('img');
+        newBig.className = 'mainimg';
+        newBig.id = 'big_' + num + '_' + (j-1);
+        newBig.style.width = '500px';
+        newBig.src = newSrc;
+        cont.appendChild(newBig);
+    };
+}
+function showBigNextArrow(){
+    var num = this.id.split('_')[1];
+    var cont = document.querySelector('#cont_Big' + num);
+    var big = document.getElementsByClassName('mainimg')[num];
+    var j = big.id.split('_')[2];
+    var n = goods[num].bigPhoto.length - 1;
+    cont.innerHTML = '';
+    if (parseInt(j) < n){
+        newSrc = goods[num].bigPhoto[parseInt(j)+1];
+        newBig = document.createElement('img');
+        newBig.className = 'mainimg';
+        newBig.id = 'big_' + num + '_' + (parseInt(j)+1);
+        newBig.style.width = '500px';
+        newBig.src = newSrc;
+        cont.appendChild(newBig);
+    } else {
+        j = -1;
+        newSrc = goods[num].bigPhoto[j+1];
+        newBig = document.createElement('img');
+        newBig.className = 'mainimg';
+        newBig.id = 'big_' + num + '_' + (j+1);
+        newBig.style.width = '500px';
+        newBig.src = newSrc;
+        cont.appendChild(newBig);
+    };
+}
