@@ -12,7 +12,6 @@ for (var i = 0; i < cards.length; i++){
 
 var buy = document.getElementsByClassName('buygame');
 for (var i = 0; i < buy.length; i++){
-    // cards[i].removeEventListener('click', showModalGood);
     buy[i].onclick = showModalOrder;
 };
 
@@ -20,6 +19,9 @@ var small = document.getElementsByClassName('small_Img');
 for (var i = 0; i < small.length; i++){
     small[i].onclick = showBig;
 };
+
+var basket = document.getElementById('basket');
+basket.onclick = showBasket;
 
 //------------------------------------------------------
 //Заполнение галереи карточками товаров
@@ -187,6 +189,8 @@ function createModalOrder(){
         modalOrderContent.appendChild(p);
         var input = document.createElement('input');
         input.type = 'number';
+        input.min = 1;
+        input.max = goods[i].quant;
         input.id = 'quantOrder_' + i;
         input.className = 'quantOrder';
         input.value = 1;
@@ -220,17 +224,17 @@ function showModalOrder(event){
     modalOrder.style.display = 'block';
     closeOrder.onclick = function(){
         modalOrder.style.display = 'none';
-        quant.value = '';
+        quant.value = '1';
     };
     ok.onclick = function(){
         var orderGood = {        //объект - товар в корзине
             title: goods[num].title,
             price: goods[num].price,
-            quantOrder: parseInt(quant.value)
+            quantOrder: parseInt(quant.value),
+            gameId: this.id.split('_')[1]
         }
         order.push(orderGood);   //кладем товар в корзину
-        console.log(order);
-
+        // console.log(order);
         modalOrder.style.display = 'none';
         modalGood.style.display = "none";
         quant.value = '';
@@ -239,13 +243,90 @@ function showModalOrder(event){
     }
     cancel.onclick = function(){
         modalOrder.style.display = 'none';
-        quant.value = '';
+        quant.value = '1';
     }
     window.onclick = function(event) {
         if (event.target == modalOrder || event.target == modalGood) {
             modalOrder.style.display = "none";
             modalGood.style.display = "none";
-            quant.value = '';
+            quant.value = '1';
+        }
+    }
+};
+
+//модальное окно корзины
+function showBasket(){
+    var modalBasket = document.createElement('div');
+    modalBasket.className = 'modalBasket';
+    modalBasket.id = 'modalBasket';
+    body.insertAdjacentElement('beforeend', modalBasket);
+    var modalBasketContent = document.createElement('div');
+    modalBasketContent.className = 'modalBasket_content';
+    modalBasketContent.id = 'modalBasketContent';
+    modalBasket.appendChild(modalBasketContent);
+    var closeModalBasket = document.createElement('span');
+    closeModalBasket.className = 'close_modal_basket';
+    closeModalBasket.id = 'closeModalBasket';
+    closeModalBasket.innerText = 'X';
+    modalBasketContent.appendChild(closeModalBasket);
+    var header = document.createElement('h3');
+    modalBasketContent.appendChild(header);
+    if (order.length == 0){
+        header.innerText = 'В корзине нет товаров';
+    } else {
+        var total = 0;
+        for (i = 0; i < order.length; i++){
+            total += order[i].quantOrder * order[i].price;
+            var basketItem = document.createElement('div');
+            basketItem.className = 'basketItem';
+            basketItem.id = 'item_' + i;
+            var itemImg = document.createElement('img');
+            var n = order[i].gameId;
+            itemImg.src = goods[n].photoForGallery[0];
+            itemImg.style.height = '50px';
+            basketItem.appendChild(itemImg);
+            var itemTitle = document.createElement('p');
+            itemTitle.innerText = order[i].title;
+            basketItem.appendChild(itemTitle);
+            var itemPrice = document.createElement('p');
+            itemPrice.innerText = 'Цена: ' + order[i].price;
+            basketItem.appendChild(itemPrice);
+            var itemQuant = document.createElement('p');
+            itemQuant.innerText = 'Количество: ' + order[i].quantOrder;
+            basketItem.appendChild(itemQuant);
+            var itemTotal = document.createElement('h3');
+            itemTotal.innerText = 'ИТОГО: ' +  order[i].quantOrder * order[i].price + 'руб.';
+            basketItem.appendChild(itemTotal);
+            modalBasketContent.appendChild(basketItem);
+        }
+        header.innerText = 'В корзине ' + order.length + ' товаров на сумму ' + total + ' рублей';
+        var block = document.createElement('div');
+        block.className = 'yesNo';
+        var ok = document.createElement('p');
+        ok.className = 'ok';
+        ok.id = 'toOrder_' + i;
+        ok.innerText = 'Заказать'
+        var cancel = document.createElement('p');
+        cancel.className = 'cancel';
+        cancel.id = 'cancelBasket_' + i;
+        cancel.innerText = 'ОТМЕНА'
+        block.appendChild(ok);
+        block.appendChild(cancel);
+        modalBasketContent.appendChild(block);
+    }
+    modalBasket.style.display = 'block';
+    closeModalBasket.onclick = function(){
+        modalBasket.style.display = 'none';
+        header.innerText = '';
+    };
+    cancel.onclick = function(){
+        modalBasket.style.display = 'none';
+        header.innerText = '';
+    };
+    window.onclick = function(event) {
+        if (event.target == modalBasket) {
+            modalBasket.style.display = "none";
+            header.innerText = '';
         }
     }
 };
