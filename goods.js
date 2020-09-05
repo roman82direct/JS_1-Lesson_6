@@ -28,7 +28,7 @@ var goods = [
     photoForGallery: ['img/wofws/forgallery/Ships_0.png', 'img/wofws/forgallery/Ships_1.jpg', 'img/wofws/forgallery/Ships_2.jpg', 'img/wofws/forgallery/Ships_3.jpg', 'img/wofws/forgallery/Ships_4.jpg'],
     bigPhoto: ['img/wofws/big/Ships_1.jpg', 'img/wofws/big/Ships_2.jpg', 'img/wofws/big/Ships_3.jpg', 'img/wofws/big/Ships_4.jpg'],
     smallPhoto: ['img/wofws/small/Ships_1.jpg', 'img/wofws/small/Ships_2.jpg', 'img/wofws/small/Ships_3.jpg', 'img/wofws/small/Ships_4.jpg']
-    },
+    }
 ];
 
 var order = [];// корзина
